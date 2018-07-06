@@ -14,3 +14,10 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::group(['middleware' => 'auth'], function () {
+    Route::get('/admin/filemanagercontroller', '\UniSharp\LaravelFilemanager\Controllers\LfmController@show')
+        ->name('admin.filemanagercontroller.index');
+    Route::post('/laravel-filemanager/upload', '\UniSharp\LaravelFilemanager\Controllers\UploadController@upload');
+    // list all lfm routes here...
+});
